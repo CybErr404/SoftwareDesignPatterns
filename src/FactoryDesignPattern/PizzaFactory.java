@@ -1,5 +1,7 @@
 package FactoryDesignPattern;
 
+import java.util.ArrayList;
+
 /**
  * @author Mia Watts
  * PizzaFactory class that constructs a new Pizza subclass object depending on which type of
@@ -18,12 +20,14 @@ public class PizzaFactory {
 
     //Global variable that stores a pizza of type Pizza.
     private Pizza pizza;
+    private ArrayList<Double> totalCost;
 
     /**
      * PizzaFactory constructor that initializes the Pizza object.
      */
     public PizzaFactory() {
         pizza = new Pizza();
+        totalCost = new ArrayList<>();
     }
 
     /**
@@ -35,22 +39,33 @@ public class PizzaFactory {
         //Switch-case that determines which object should be made based on what was passed as a parameter.
         switch(pizzaType) {
             case "sicilian":
-                Sicilian newSicilian = new Sicilian();
+                Sicilian newSicilian = new Sicilian(15.99);
                 System.out.println("You ordered a " + newSicilian.getName() +
-                        " pizza! A Sicilian pizza object has been created.");
+                        " pizza! A Sicilian pizza object has been created. Price: " + newSicilian.getPrice());
+                totalCost.add(newSicilian.getPrice());
                 break;
             case "new york":
-                NewYork newNewYork = new NewYork();
+                NewYork newNewYork = new NewYork(12.0);
                 System.out.println("You ordered a " + newNewYork.getName() +
-                        " pizza! A New York style pizza object has been created.");
+                        " pizza! A New York style pizza object has been created. Price: " + newNewYork.getPrice());
+                totalCost.add(newNewYork.getPrice());
                 break;
             case "chicago":
-                Chicago newChicago = new Chicago();
+                Chicago newChicago = new Chicago(14.0);
                 System.out.println("You ordered a " + newChicago.getName() +
-                        " pizza! A Chicago style pizza object has been created.");
+                        " pizza! A Chicago style pizza object has been created. Price: " + newChicago.getPrice());
+                totalCost.add(newChicago.getPrice());
                 break;
             default:
                 System.out.println("That is not a valid pizza type. Enter a valid pizza type!");
         }
+    }
+
+    public double calculateCost() {
+        double total = 0;
+        for(int i = 0; i < totalCost.size(); i++) {
+            total = total + totalCost.get(i);
+        }
+        return total;
     }
 }

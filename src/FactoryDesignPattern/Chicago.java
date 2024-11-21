@@ -7,12 +7,16 @@ package FactoryDesignPattern;
 public class Chicago extends Pizza {
     //Global variable that stores the name of the pizza.
     private String name;
+    private double price;
 
     /**
      * Constructor that initializes the name of the pizza to be Chicago.
      */
     public Chicago() {
         name = "Chicago";
+    }
+    public Chicago(double newPrice) {
+        price = newPrice;
     }
 
     /**
@@ -21,5 +25,9 @@ public class Chicago extends Pizza {
      */
     public String getName() {
         return name;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }

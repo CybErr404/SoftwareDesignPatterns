@@ -24,6 +24,7 @@ public class PizzaHut {
         order.generate("new york");
         order.generate("chicago");
         order.generate("fjesiogjrougjr");
+        System.out.println("The total cost of your order is: $" + order.calculateCost() + ".");
     }
 
 }
